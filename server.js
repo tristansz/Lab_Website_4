@@ -233,7 +233,7 @@ app.get('/player_info', function(req, res) {
         });
 });
 
-app.get('/player_info/select_player', function(req, res) {
+app.get('/player_info/post', function(req, res) {
 	var player_id = "SELECT id FROM football_players WHERE name = "+req+".name;";
 	db.task('get-everything', task => {
 		return task.batch([
@@ -241,7 +241,7 @@ app.get('/player_info/select_player', function(req, res) {
 		]);
 	})
         .then(data => {
-            res.render('pages/player_info',{
+            res.render('pages/player_info/post',{
 				my_title: "Player Information",
 				data: data[0] 				
 			})
